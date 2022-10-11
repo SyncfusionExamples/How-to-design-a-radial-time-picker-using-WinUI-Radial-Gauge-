@@ -32,16 +32,17 @@ namespace TimePicker
 
             DateTime currentDateTime = DateTime.Now;
             this.HoursTextBlock.Text = currentDateTime.ToString("hh");
-            this.MinutesTextBlock.Text = currentDateTime.Minute.ToString();
-            pointer.Value = Convert.ToDouble(this.HoursTextBlock.Text);
-            this.ContentTextBlock.Text = pointer.Value.ToString();
+            this.MinutesTextBlock.Text = currentDateTime.Minute.ToString("00");
+            this.MinutesTextBlock.Foreground.Opacity = 0.5;
+            this.pointer.Value = Convert.ToDouble(this.HoursTextBlock.Text);
+            this.ContentTextBlock.Text = this.HoursTextBlock.Text;
             if (currentDateTime.ToString("tt") == "AM")
             {
-                this.AMTextBlock.Foreground = new SolidColorBrush(Colors.White);
+                this.PMTextBlock.Foreground.Opacity = 0.5;
             }
             else
             {
-                this.PMTextBlock.Foreground = new SolidColorBrush(Colors.White);
+                this.AMTextBlock.Foreground.Opacity = 0.5;
             }
         }
 
@@ -50,7 +51,7 @@ namespace TimePicker
             this.timerPickerAxis.Maximum = 12;
             this.timerPickerAxis.Interval = 1;
             this.pointer.Value = Convert.ToDouble(this.HoursTextBlock.Text);
-            this.ContentTextBlock.Text = this.pointer.Value.ToString();
+            this.ContentTextBlock.Text = this.HoursTextBlock.Text;
             this.HoursTextBlock.Foreground.Opacity = 1;
             this.MinutesTextBlock.Foreground.Opacity = 0.5;
         }
@@ -60,21 +61,21 @@ namespace TimePicker
             this.timerPickerAxis.Maximum = 60;
             this.timerPickerAxis.Interval = 5;
             this.pointer.Value = Convert.ToDouble(this.MinutesTextBlock.Text);
-            this.ContentTextBlock.Text = this.pointer.Value.ToString();
+            this.ContentTextBlock.Text = this.MinutesTextBlock.Text;
             this.HoursTextBlock.Foreground.Opacity = 0.5;
             this.MinutesTextBlock.Foreground.Opacity = 1;
         }
 
         private void AMTextBlock_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            this.AMTextBlock.Foreground = new SolidColorBrush(Colors.White);
+            this.AMTextBlock.Foreground.Opacity = 1;
             this.PMTextBlock.Foreground.Opacity = 0.5;
         }
 
         private void PMTextBlock_Tapped(object sender, TappedRoutedEventArgs e)
         {
             this.AMTextBlock.Foreground.Opacity = 0.5;
-            this.PMTextBlock.Foreground = new SolidColorBrush(Colors.White);
+            this.PMTextBlock.Foreground.Opacity = 1;
         }
 
         private void pointer_ValueChanging(object sender, ValueChangingEventArgs e)
@@ -85,14 +86,14 @@ namespace TimePicker
                 newValue = (int)e.NewValue;
             }
 
-            this.ContentTextBlock.Text = newValue.ToString();
+            this.ContentTextBlock.Text = newValue.ToString("00");
             if (this.timerPickerAxis.Maximum == 12)
             {
-                this.HoursTextBlock.Text = newValue.ToString("00");
+                this.HoursTextBlock.Text = this.ContentTextBlock.Text;
             }
             else
             {
-                this.MinutesTextBlock.Text = newValue.ToString("00");
+                this.MinutesTextBlock.Text = this.ContentTextBlock.Text;
             }
         }
 
@@ -103,9 +104,9 @@ namespace TimePicker
                 this.timerPickerAxis.Maximum = 60;
                 this.timerPickerAxis.Interval = 5;
                 this.pointer.Value = Convert.ToDouble(this.MinutesTextBlock.Text);
-                this.ContentTextBlock.Text = this.pointer.Value.ToString();
+                this.ContentTextBlock.Text = this.MinutesTextBlock.Text;
                 this.HoursTextBlock.Foreground.Opacity = 0.5;
-                this.MinutesTextBlock.Foreground = new SolidColorBrush(Colors.White);
+                this.MinutesTextBlock.Foreground.Opacity = 1;
             }
         }
     }
