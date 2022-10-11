@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "TimePicker (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "TimePicker (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

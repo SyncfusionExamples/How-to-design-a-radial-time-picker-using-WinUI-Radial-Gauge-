@@ -1,0 +1,98 @@
+﻿<Window x:Class="TimePicker.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="using:TimePicker"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:gauge="using:Syncfusion.UI.Xaml.Gauges"
+        mc:Ignorable="d">
+
+    <Grid HorizontalAlignment="Center"
+          VerticalAlignment="Center">
+        <Border BorderBrush="Black">
+            <StackPanel Orientation="Vertical">
+                <Grid Background="#512BD4"
+                      Padding="10">
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center">
+                        <TextBlock x:Name="HoursTextBlock"
+                                   Text="10"
+                                   FontSize="40"
+                                   Foreground="White"
+                                   Tapped="HoursTextBlock_Tapped" />
+                        <TextBlock Text=":"
+                                   FontSize="40"
+                                   Margin="10,0,10,0"
+                                   Foreground="#88FFFFFF" />
+                        <TextBlock x:Name="MinutesTextBlock"
+                                   Text="10"
+                                   FontSize="40"
+                                   Foreground="#88FFFFFF"
+                                   Tapped="MinutesTextBlock_Tapped" />
+                        <StackPanel Orientation="Vertical"
+                                    Margin="10,2,10,2">
+                            <TextBlock x:Name="AMTextBlock"
+                                       Text="AM"
+                                       FontSize="20"
+                                       Foreground="#88FFFFFF"
+                                       Tapped="AMTextBlock_Tapped" />
+                            <TextBlock x:Name="PMTextBlock"
+                                       Text="PM"
+                                       FontSize="20"
+                                       Foreground="#88FFFFFF"
+                                       Tapped="PMTextBlock_Tapped" />
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+                <gauge:SfRadialGauge HorizontalAlignment="Center"
+                                     VerticalAlignment="Center"
+                                     Margin="25">
+                    <gauge:SfRadialGauge.Axes>
+                        <gauge:RadialAxis x:Name="timerPickerAxis"
+                                          StartAngle="270"
+                                          EndAngle="270"
+                                          Maximum="12"
+                                          Interval="1"
+                                          LabelPosition="Outside"
+                                          ShowFirstLabel="False"
+                                          ShowAxisLine="False"
+                                          ShowTicks="False">
+                            <gauge:RadialAxis.BackgroundContent>
+                                <Ellipse Fill="LightGray" />
+                            </gauge:RadialAxis.BackgroundContent>
+                            <gauge:RadialAxis.Pointers>
+                                <gauge:ContentPointer x:Name="pointer"
+                                                      OffsetUnit="Pixel"
+                                                      EnableAnimation="False"
+                                                      MarkerOffset="-20"
+                                                      IsInteractive="True"
+                                                      ValueChanging="pointer_ValueChanging"
+                                                      ValueChangeCompleted="pointer_ValueChangeCompleted">
+                                    <gauge:ContentPointer.Content>
+                                        <Grid Height="30"
+                                              Width="30">
+                                            <Ellipse Fill="#512BD4" />
+                                            <TextBlock x:Name="ContentTextBlock"
+                                                       Foreground="White"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center" />
+                                        </Grid>
+                                    </gauge:ContentPointer.Content>
+                                </gauge:ContentPointer>
+                                <gauge:NeedlePointer Value="{Binding ElementName=pointer, Path=Value, Mode=TwoWay}"
+                                                     KnobFill="#512BD4"
+                                                     KnobRadius="0.02"
+                                                     NeedleStartWidth="2"
+                                                     NeedleEndWidth="2"
+                                                     NeedleFill="#512BD4"
+                                                     NeedleLengthUnit="Factor"
+                                                     NeedleLength="0.85" />
+                            </gauge:RadialAxis.Pointers>
+                        </gauge:RadialAxis>
+                    </gauge:SfRadialGauge.Axes>
+                </gauge:SfRadialGauge>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
