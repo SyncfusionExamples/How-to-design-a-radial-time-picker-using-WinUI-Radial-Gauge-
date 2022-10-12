@@ -1,8 +1,8 @@
 # How to design a radial time picker using WinUI Radial Gauge
 
-This repository contains sample for how to design a radial time picker using the [Syncfusion WinUi Radial Gauge](https://help.syncfusion.com/winui/radial-gauge/getting-started) control.
+This repository contains sample to design a radial time picker using the [Syncfusion WinUI Radial Gauge](https://help.syncfusion.com/winui/radial-gauge/getting-started) control.
 
-Please refer the KB through this [link]().
+Please refer the KB through this [link](https://www.syncfusion.com/kb/13671/how-to-design-a-radial-timer-picker-using-winui-radial-gauge-sfradialgauge).
 
 ## Syncfuion control(s)
 
